@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { AnimateIn } from "@/components/animate-in";
@@ -78,6 +78,51 @@ function useCountUp(target: number, duration: number = 2000) {
   return { count, ref };
 }
 
+const ROTATING_WORDS = ["Wealth", "Power", "Freedom", "Everything", "Happiness", "Strength", "Confidence"];
+
+function TypingRotator() {
+  const [wordIndex, setWordIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [text, setText] = useState("");
+
+  useEffect(() => {
+    const currentWord = ROTATING_WORDS[wordIndex];
+
+    const timeout = setTimeout(
+      () => {
+        if (!isDeleting) {
+          setText(currentWord.slice(0, charIndex + 1));
+          if (charIndex + 1 === currentWord.length) {
+            // Pause at full word, then start deleting
+            setTimeout(() => setIsDeleting(true), 2000);
+            return;
+          }
+          setCharIndex((c) => c + 1);
+        } else {
+          setText(currentWord.slice(0, charIndex));
+          if (charIndex === 0) {
+            setIsDeleting(false);
+            setWordIndex((i) => (i + 1) % ROTATING_WORDS.length);
+            return;
+          }
+          setCharIndex((c) => c - 1);
+        }
+      },
+      isDeleting ? 50 : 100
+    );
+
+    return () => clearTimeout(timeout);
+  }, [charIndex, isDeleting, wordIndex]);
+
+  return (
+    <span className="inline-block min-w-[4ch] text-left">
+      <span className="text-green-400">{text}</span>
+      <span className="animate-pulse text-green-400">|</span>
+    </span>
+  );
+}
+
 export default function HomePage() {
   const [trainers, setTrainers] = useState<Trainer[]>([]);
   const [loading, setLoading] = useState(true);
@@ -145,8 +190,11 @@ export default function HomePage() {
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="mx-auto max-w-4xl text-center"
           >
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-teal-300">
+              Australia&apos;s Marketplace for Verified Personal Trainers
+            </p>
             <h1 className="font-display text-5xl font-bold leading-tight text-white sm:text-6xl lg:text-7xl">
-              Health is Wealth
+              Health is <TypingRotator />
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/80 sm:text-xl">
               Australia&apos;s marketplace for verified personal trainers. Train anywhere, anytime.
