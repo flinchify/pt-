@@ -66,8 +66,8 @@ export function ProgressChart({ data, label, unit }: ProgressChartProps) {
       >
         <defs>
           <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#14B8A6" stopOpacity="0.2" />
-            <stop offset="100%" stopColor="#14B8A6" stopOpacity="0" />
+            <stop offset="0%" stopColor="#16A34A" stopOpacity="0.2" />
+            <stop offset="100%" stopColor="#16A34A" stopOpacity="0" />
           </linearGradient>
         </defs>
 
@@ -97,7 +97,7 @@ export function ProgressChart({ data, label, unit }: ProgressChartProps) {
         <path
           d={pathD}
           fill="none"
-          stroke="#0D9488"
+          stroke="#0A6847"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -110,7 +110,7 @@ export function ProgressChart({ data, label, unit }: ProgressChartProps) {
             cy={p.y}
             r="3"
             fill="#fff"
-            stroke="#0D9488"
+            stroke="#0A6847"
             strokeWidth="1.5"
           />
         ))}

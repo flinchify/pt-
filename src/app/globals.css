@@ -2,41 +2,41 @@
 
 @theme inline {
   --color-background: #ffffff;
-  --color-foreground: #1A1A2E;
-  --color-cream: #F7F8FA;
-  --color-cream-dark: #EBEDF2;
+  --color-foreground: #1A1A1A;
+  --color-cream: #F8FAF9;
+  --color-cream-dark: #EDF2EE;
 
-  /* Primary: Deep Teal/Emerald */
-  --color-teal-50: #F0FDFA;
-  --color-teal-100: #CCFBF1;
-  --color-teal-200: #99F6E4;
-  --color-teal-300: #5EEAD4;
-  --color-teal-400: #2DD4BF;
-  --color-teal-500: #14B8A6;
-  --color-teal-600: #0D9488;
-  --color-teal-700: #0F766E;
-  --color-teal-800: #115E59;
-  --color-teal-900: #134E4A;
-  --color-teal-950: #0A2E2B;
+  /* Primary: Deep Green (matching APT logo) */
+  --color-teal-50: #F0FDF4;
+  --color-teal-100: #DCFCE7;
+  --color-teal-200: #BBF7D0;
+  --color-teal-300: #86EFAC;
+  --color-teal-400: #4ADE80;
+  --color-teal-500: #22C55E;
+  --color-teal-600: #16A34A;
+  --color-teal-700: #0A6847;
+  --color-teal-800: #0D5A3C;
+  --color-teal-900: #0A4830;
+  --color-teal-950: #072E1F;
 
-  /* Accent: Warm Coral */
-  --color-coral-50: #FFF5F2;
-  --color-coral-100: #FFE8E0;
-  --color-coral-200: #FFD0C2;
-  --color-coral-300: #FFB09A;
-  --color-coral-400: #FF8A6A;
-  --color-coral-500: #FF6B45;
-  --color-coral-600: #E8522D;
-  --color-coral-700: #C4401F;
-  --color-coral-800: #A1351B;
-  --color-coral-900: #7D2C18;
+  /* Accent: Bright Green (CTAs) */
+  --color-coral-50: #F0FDF4;
+  --color-coral-100: #DCFCE7;
+  --color-coral-200: #BBF7D0;
+  --color-coral-300: #86EFAC;
+  --color-coral-400: #4ADE80;
+  --color-coral-500: #16A34A;
+  --color-coral-600: #0A6847;
+  --color-coral-700: #15803D;
+  --color-coral-800: #166534;
+  --color-coral-900: #14532D;
 
   /* Neutral: Warm greys */
-  --color-warm-50: #F7F8FA;
-  --color-warm-100: #F1F3F7;
-  --color-warm-200: #E2E5EB;
-  --color-warm-300: #CBD0D9;
-  --color-warm-400: #94A3B8;
+  --color-warm-50: #F8FAF9;
+  --color-warm-100: #F1F3F2;
+  --color-warm-200: #E2E5E3;
+  --color-warm-300: #CBD0CC;
+  --color-warm-400: #94A39A;
   --color-warm-500: #64748B;
   --color-warm-600: #475569;
   --color-warm-700: #334155;
@@ -44,18 +44,18 @@
   --color-warm-900: #0F172A;
   --color-warm-950: #020617;
 
-  /* Navy (dark backgrounds) */
-  --color-navy-50: #F8FAFC;
-  --color-navy-100: #F1F5F9;
-  --color-navy-200: #E2E8F0;
-  --color-navy-300: #CBD5E1;
-  --color-navy-400: #94A3B8;
-  --color-navy-500: #64748B;
-  --color-navy-600: #475569;
-  --color-navy-700: #334155;
-  --color-navy-800: #1E293B;
-  --color-navy-900: #0F172A;
-  --color-navy-950: #0C1222;
+  /* Dark backgrounds (dark green) */
+  --color-navy-50: #F8FAF9;
+  --color-navy-100: #F0F5F2;
+  --color-navy-200: #E0EBE5;
+  --color-navy-300: #C2D5CB;
+  --color-navy-400: #7FA894;
+  --color-navy-500: #4E7A63;
+  --color-navy-600: #3A5E4B;
+  --color-navy-700: #2C4A3A;
+  --color-navy-800: #1A3328;
+  --color-navy-900: #0F2419;
+  --color-navy-950: #091A11;
 
   /* Emerald (secondary accent) */
   --color-emerald-50: #ECFDF5;
@@ -191,8 +191,8 @@ body {
 /* Form styling */
 input:focus, select:focus, textarea:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.2);
-  border-color: var(--color-teal-600);
+  box-shadow: 0 0 0 3px rgba(10, 104, 71, 0.2);
+  border-color: var(--color-teal-700);
 }
 
 /* Custom scrollbar */
@@ -216,15 +216,15 @@ input:focus, select:focus, textarea:focus {
 /* Hero grid pattern */
 .hero-grid-pattern {
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
 /* CTA pulse glow */
 @keyframes cta-pulse-glow {
-  0%, 100% { box-shadow: 0 4px 15px rgba(255, 107, 69, 0.3); }
-  50% { box-shadow: 0 4px 25px rgba(255, 107, 69, 0.6), 0 0 40px rgba(255, 107, 69, 0.15); }
+  0%, 100% { box-shadow: 0 4px 15px rgba(22, 163, 74, 0.3); }
+  50% { box-shadow: 0 4px 25px rgba(22, 163, 74, 0.5), 0 0 40px rgba(22, 163, 74, 0.15); }
 }
 
 .animate-cta-pulse {
@@ -249,7 +249,7 @@ input:focus, select:focus, textarea:focus {
 /* Section separator line */
 .section-separator {
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--color-teal-500), transparent);
+  background: linear-gradient(90deg, transparent, var(--color-teal-600), transparent);
 }
 
 /* Enhanced card hover */
@@ -259,5 +259,5 @@ input:focus, select:focus, textarea:focus {
 
 .card-hover-glow:hover {
   transform: scale(1.02) translateY(-2px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(13, 148, 136, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(10, 104, 71, 0.2);
 }

@@ -97,7 +97,7 @@ export default function FaqPage() {
                   setActiveCategory(cat.name);
                   setOpenQuestion(null);
                 }}
-                className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
+                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                   activeCategory === cat.name
                     ? "bg-teal-600 text-white"
                     : "bg-warm-100 text-warm-600 hover:bg-warm-200"
@@ -150,7 +150,7 @@ export default function FaqPage() {
               </p>
               <Link
                 href="/contact"
-                className="mt-4 inline-block rounded-xl bg-teal-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-teal-700"
+                className="mt-4 inline-block rounded-full bg-teal-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-teal-700"
               >
                 Contact Support
               </Link>

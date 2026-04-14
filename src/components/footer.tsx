@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export function Footer() {
   const [email, setEmail] = useState("");
@@ -47,11 +48,14 @@ export function Footer() {
         <div className="grid gap-12 lg:grid-cols-4">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link
-              href="/"
-              className="font-display text-2xl font-bold text-white"
-            >
-              AnywherePT
+            <Link href="/" className="inline-block">
+              <Image
+                src="/logo.png"
+                alt="AnywherePT"
+                width={120}
+                height={44}
+                className="h-10 w-auto brightness-0 invert"
+              />
             </Link>
             <p className="mt-3 text-sm leading-relaxed text-warm-400">
               Health is Wealth. Australia&apos;s marketplace connecting people with

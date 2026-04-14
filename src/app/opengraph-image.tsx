@@ -16,7 +16,7 @@ export default async function Image() {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'linear-gradient(135deg, #0A2E2B 0%, #134E4A 40%, #0F766E 100%)',
+          background: 'linear-gradient(135deg, #0A1F1B 0%, #0A4830 40%, #0A6847 100%)',
           fontFamily: 'system-ui, sans-serif',
         }}
       >
@@ -42,7 +42,7 @@ export default async function Image() {
             style={{
               fontSize: '32px',
               fontWeight: 600,
-              color: '#FF6B45',
+              color: '#22C55E',
               letterSpacing: '4px',
               textTransform: 'uppercase',
             }}

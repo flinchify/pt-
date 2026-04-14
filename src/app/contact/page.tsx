@@ -60,7 +60,7 @@ export default function ContactPage() {
                     </p>
                     <button
                       onClick={() => setStatus("idle")}
-                      className="mt-6 rounded-lg bg-teal-600 px-6 py-2.5 text-sm font-semibold text-white hover:bg-teal-700"
+                      className="mt-6 rounded-full bg-teal-600 px-6 py-2.5 text-sm font-semibold text-white hover:bg-teal-700"
                     >
                       Send Another Message
                     </button>
@@ -143,7 +143,7 @@ export default function ContactPage() {
                     <button
                       type="submit"
                       disabled={status === "sending"}
-                      className="rounded-xl bg-teal-600 px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-teal-700 disabled:opacity-60"
+                      className="rounded-full bg-teal-600 px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-teal-700 disabled:opacity-60"
                     >
                       {status === "sending" ? "Sending..." : "Send Message"}
                     </button>

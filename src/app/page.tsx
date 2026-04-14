@@ -6,6 +6,17 @@ import { motion } from "framer-motion";
 import { AnimateIn } from "@/components/animate-in";
 import { TrainerCard } from "@/components/trainer-card";
 
+const CATEGORIES = [
+  "Strength",
+  "HIIT",
+  "Yoga",
+  "Boxing",
+  "CrossFit",
+  "Pilates",
+  "Weight Loss",
+  "Rehabilitation",
+];
+
 const SPECIALISATIONS = [
   "Strength Training",
   "Weight Loss",
@@ -112,32 +123,60 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-teal-950 via-teal-900 to-teal-950">
+      {/* Hero Section — Dark gradient with image overlay */}
+      <section className="relative min-h-screen overflow-hidden">
+        {/* Background image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80')",
+          }}
+        />
+        {/* Dark green gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0A1F1B]/95 via-[#0A4830]/90 to-[#0A6847]/80" />
         <div className="hero-grid-pattern absolute inset-0" />
         <div className="grain-texture absolute inset-0" />
-        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-36">
+
+        <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center px-4 py-20 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="mx-auto max-w-3xl text-center"
+            className="mx-auto max-w-4xl text-center"
           >
-            <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-teal-300">
+            <p className="mb-4 inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-semibold uppercase tracking-widest text-teal-300 backdrop-blur-sm">
               Australia&apos;s Trainer Marketplace
             </p>
             <h1 className="font-display text-5xl font-bold leading-tight text-white sm:text-6xl lg:text-7xl">
               Health is Wealth
             </h1>
-            <p className="mt-6 text-lg leading-relaxed text-teal-200/90 sm:text-xl">
-              Australia&apos;s marketplace for verified personal trainers. Find your perfect match, book a session, and start your fitness journey today.
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/80 sm:text-xl">
+              Australia&apos;s marketplace for verified personal trainers. Train anywhere, anytime.
             </p>
+
+            {/* Category Pills */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="mt-8 flex flex-wrap justify-center gap-2"
+            >
+              {CATEGORIES.map((cat) => (
+                <Link
+                  key={cat}
+                  href={`/trainers?specialisation=${encodeURIComponent(cat)}`}
+                  className="rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm transition-all hover:border-white/40 hover:bg-white/20"
+                >
+                  {cat}
+                </Link>
+              ))}
+            </motion.div>
 
             {/* Search Bar */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
               className="mx-auto mt-10 max-w-2xl"
             >
               <div className="flex flex-col gap-3 rounded-2xl bg-white/10 p-3 backdrop-blur-md sm:flex-row">
@@ -151,13 +190,13 @@ export default function HomePage() {
                     placeholder="Suburb or city"
                     value={searchLocation}
                     onChange={(e) => setSearchLocation(e.target.value)}
-                    className="w-full rounded-xl border-0 bg-white py-3.5 pl-10 pr-4 text-sm text-warm-800 placeholder:text-warm-400 focus:ring-2 focus:ring-teal-400"
+                    className="w-full rounded-xl border-0 bg-white py-3.5 pl-10 pr-4 text-sm text-warm-800 placeholder:text-warm-400 focus:ring-2 focus:ring-teal-500"
                   />
                 </div>
                 <select
                   value={searchSpec}
                   onChange={(e) => setSearchSpec(e.target.value)}
-                  className="rounded-xl border-0 bg-white px-4 py-3.5 text-sm text-warm-800 focus:ring-2 focus:ring-teal-400"
+                  className="rounded-xl border-0 bg-white px-4 py-3.5 text-sm text-warm-800 focus:ring-2 focus:ring-teal-500"
                 >
                   <option value="">All Specialisations</option>
                   {SPECIALISATIONS.map((s) => (
@@ -166,7 +205,7 @@ export default function HomePage() {
                 </select>
                 <Link
                   href={`/trainers${searchLocation || searchSpec ? `?suburb=${encodeURIComponent(searchLocation)}&specialisation=${encodeURIComponent(searchSpec)}` : ""}`}
-                  className="rounded-xl bg-coral-500 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-coral-600"
+                  className="rounded-xl bg-coral-500 px-8 py-3.5 text-center text-sm font-semibold text-white transition-colors hover:bg-coral-600"
                 >
                   Search
                 </Link>
@@ -182,39 +221,40 @@ export default function HomePage() {
             >
               <Link
                 href="/trainers"
-                className="animate-cta-pulse rounded-xl bg-coral-500 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-coral-600"
+                className="animate-cta-pulse rounded-full bg-coral-500 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-coral-600"
               >
                 Find a Trainer
               </Link>
               <Link
                 href="/for-trainers"
-                className="rounded-xl border-2 border-white/30 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:border-white/60 hover:bg-white/10"
+                className="rounded-full border-2 border-white/30 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:border-white/60 hover:bg-white/10"
               >
                 Join as Trainer
               </Link>
             </motion.div>
-
-            {/* Hero Stats */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
-              className="mt-14 flex justify-center gap-8 sm:gap-16"
-            >
-              <div className="text-center">
-                <p className="font-display text-3xl font-bold text-white">500+</p>
-                <p className="mt-1 text-sm text-teal-300/80">Trainers</p>
-              </div>
-              <div className="text-center">
-                <p className="font-display text-3xl font-bold text-white">10,000+</p>
-                <p className="mt-1 text-sm text-teal-300/80">Sessions</p>
-              </div>
-              <div className="text-center">
-                <p className="font-display text-3xl font-bold text-white">All Major</p>
-                <p className="mt-1 text-sm text-teal-300/80">Cities</p>
-              </div>
-            </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Stats Bar */}
+      <section className="border-b border-warm-100 bg-white py-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col items-center justify-center gap-6 sm:flex-row sm:gap-16">
+            {[
+              { label: "Verified Trainers", value: "50+" },
+              { label: "100% Australian", value: "AU" },
+              { label: "Hassle-Free Booking", value: "Easy" },
+            ].map((item) => (
+              <div key={item.label} className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-teal-50">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A6847" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </div>
+                <span className="text-sm font-semibold text-warm-800">{item.label}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -223,10 +263,11 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimateIn>
             <div className="mx-auto max-w-2xl text-center">
-              <p className="text-sm font-semibold uppercase tracking-widest text-teal-600">Simple Process</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-teal-600">Simple Process</p>
               <h2 className="mt-3 font-display text-3xl font-bold text-warm-900 sm:text-4xl">
                 How It Works
               </h2>
+              <p className="mt-4 text-warm-500">Get started in three easy steps</p>
             </div>
           </AnimateIn>
 
@@ -295,7 +336,7 @@ export default function HomePage() {
           <AnimateIn>
             <div className="flex items-end justify-between">
               <div>
-                <p className="text-sm font-semibold uppercase tracking-widest text-teal-600">Top Rated</p>
+                <p className="text-xs font-bold uppercase tracking-widest text-teal-600">Top Rated</p>
                 <h2 className="mt-3 font-display text-3xl font-bold text-warm-900 sm:text-4xl">
                   Featured Trainers
                 </h2>
@@ -362,6 +403,93 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Benefits / Everything You Need */}
+      <section className="bg-white py-20 sm:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <AnimateIn>
+            <div className="mx-auto max-w-2xl text-center">
+              <p className="text-xs font-bold uppercase tracking-widest text-teal-600">Platform Benefits</p>
+              <h2 className="mt-3 font-display text-3xl font-bold text-warm-900 sm:text-4xl">
+                Everything You Need
+              </h2>
+              <p className="mt-4 text-warm-500">A complete platform for your fitness journey</p>
+            </div>
+          </AnimateIn>
+
+          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                title: "Verified Trainers",
+                desc: "Every trainer is background-checked and certified. Train with confidence knowing your safety comes first.",
+                icon: (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg>
+                ),
+              },
+              {
+                title: "Flexible Locations",
+                desc: "Train at home, in a park, at the gym, or online. Your trainer meets you wherever suits your lifestyle.",
+                icon: (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                ),
+              },
+              {
+                title: "Secure Payments",
+                desc: "Stripe-powered payments protect both parties. Pay only after sessions, with full refund protection.",
+                icon: (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+                    <line x1="1" y1="10" x2="23" y2="10" />
+                  </svg>
+                ),
+              },
+              {
+                title: "Progress Tracking",
+                desc: "Built-in tools to track your fitness journey. Set goals, log progress, and see your transformation.",
+                icon: (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                  </svg>
+                ),
+              },
+              {
+                title: "Real Reviews",
+                desc: "Read authentic reviews from verified clients. Make informed decisions based on real experiences.",
+                icon: (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                ),
+              },
+              {
+                title: "Easy Scheduling",
+                desc: "View real-time availability and book instantly. Reschedule or cancel with a tap. No phone calls needed.",
+                icon: (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg>
+                ),
+              },
+            ].map((item, i) => (
+              <AnimateIn key={item.title} delay={i * 100}>
+                <div className="rounded-2xl border border-warm-100 bg-white p-6 transition-shadow hover:shadow-md">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-teal-50 text-teal-700">
+                    {item.icon}
+                  </div>
+                  <h3 className="mt-4 text-lg font-semibold text-warm-900">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-warm-500">{item.desc}</p>
+                </div>
+              </AnimateIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Animated Stats Bar */}
       <section className="bg-teal-900 py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -386,12 +514,158 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* For Trainers — Split layout with image */}
+      <section className="bg-gradient-to-br from-[#0A1F1B] via-[#0A4830] to-[#0A6847] py-20 sm:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            <AnimateIn>
+              <div>
+                <p className="text-xs font-bold uppercase tracking-widest text-teal-300">For Trainers</p>
+                <h2 className="mt-3 font-display text-3xl font-bold text-white sm:text-4xl">
+                  Grow Your Training Business
+                </h2>
+                <p className="mt-4 text-lg leading-relaxed text-white/70">
+                  Join hundreds of trainers already growing their client base through AnywherePT. Focus on training while we handle the rest.
+                </p>
+                <ul className="mt-8 space-y-4">
+                  {[
+                    "Get matched with clients looking for your expertise",
+                    "Manage your schedule and bookings in one place",
+                    "Receive secure, on-time payments after every session",
+                    "Build your reputation with verified reviews",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-white/90">
+                      <svg className="mt-0.5 h-5 w-5 shrink-0 text-teal-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                      <span className="text-sm">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  {[
+                    { value: "$4,200", label: "Avg monthly earnings" },
+                    { value: "12+", label: "New clients / month" },
+                    { value: "97%", label: "Completion rate" },
+                  ].map((badge) => (
+                    <span key={badge.label} className="rounded-full bg-white/10 px-4 py-2 text-sm backdrop-blur-sm">
+                      <span className="font-bold text-white">{badge.value}</span>{" "}
+                      <span className="text-white/60">{badge.label}</span>
+                    </span>
+                  ))}
+                </div>
+                <Link
+                  href="/for-trainers"
+                  className="mt-8 inline-block rounded-full bg-coral-500 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-coral-600"
+                >
+                  Learn More
+                </Link>
+              </div>
+            </AnimateIn>
+            <AnimateIn delay={200}>
+              <div className="overflow-hidden rounded-2xl">
+                <img
+                  src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=800&h=600&fit=crop"
+                  alt="Personal trainer working with client"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </AnimateIn>
+          </div>
+        </div>
+      </section>
+
+      {/* For Gyms — Split layout with image */}
       <section className="bg-white py-20 sm:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            <AnimateIn delay={100}>
+              <div className="overflow-hidden rounded-2xl">
+                <img
+                  src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=600&fit=crop"
+                  alt="Modern gym interior"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </AnimateIn>
+            <AnimateIn>
+              <div>
+                <p className="text-xs font-bold uppercase tracking-widest text-teal-600">For Gyms</p>
+                <h2 className="mt-3 font-display text-3xl font-bold text-warm-900 sm:text-4xl">
+                  Partner With AnywherePT
+                </h2>
+                <p className="mt-4 text-lg leading-relaxed text-warm-500">
+                  Open your doors to more clients by hosting AnywherePT trainers. Increase foot traffic and revenue with zero upfront cost.
+                </p>
+                <div className="mt-8 grid grid-cols-2 gap-4">
+                  {[
+                    { value: "40%", label: "More foot traffic" },
+                    { value: "25+", label: "Partner gyms" },
+                    { value: "$2,500", label: "Avg monthly revenue" },
+                    { value: "100%", label: "Free to join" },
+                  ].map((s) => (
+                    <div key={s.label} className="rounded-2xl border border-warm-100 bg-cream p-5 text-center">
+                      <p className="font-display text-2xl font-bold text-teal-700">{s.value}</p>
+                      <p className="mt-1 text-xs text-warm-500">{s.label}</p>
+                    </div>
+                  ))}
+                </div>
+                <Link
+                  href="/for-gyms"
+                  className="mt-8 inline-block rounded-full bg-coral-500 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-coral-600"
+                >
+                  Partner With Us
+                </Link>
+              </div>
+            </AnimateIn>
+          </div>
+        </div>
+      </section>
+
+      {/* Enterprise CTA */}
+      <section className="relative overflow-hidden py-20 sm:py-28">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=1920&q=80')",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0A1F1B]/95 to-[#0A4830]/85" />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <AnimateIn>
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="text-xs font-bold uppercase tracking-widest text-teal-300">Corporate Wellness</p>
+              <h2 className="mt-3 font-display text-3xl font-bold text-white sm:text-4xl">
+                Health is Wealth &mdash; For Your Team
+              </h2>
+              <p className="mt-4 text-lg leading-relaxed text-white/70">
+                Invest in your employees&apos; health with corporate fitness programs. Reduce sick days, boost morale, and build a healthier workplace.
+              </p>
+              <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+                <Link
+                  href="/enterprise"
+                  className="rounded-full bg-coral-500 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-coral-600"
+                >
+                  Learn More
+                </Link>
+                <Link
+                  href="/contact"
+                  className="rounded-full border-2 border-white/30 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:border-white/60 hover:bg-white/10"
+                >
+                  Contact Sales
+                </Link>
+              </div>
+            </div>
+          </AnimateIn>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="bg-cream py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimateIn>
             <div className="mx-auto max-w-2xl text-center">
-              <p className="text-sm font-semibold uppercase tracking-widest text-teal-600">Testimonials</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-teal-600">Testimonials</p>
               <h2 className="mt-3 font-display text-3xl font-bold text-warm-900 sm:text-4xl">
                 What Our Clients Say
               </h2>
@@ -417,7 +691,7 @@ export default function HomePage() {
               },
             ].map((t, i) => (
               <AnimateIn key={t.name} delay={i * 150}>
-                <div className="flex h-full flex-col rounded-2xl border border-warm-100 bg-white p-8">
+                <div className="flex h-full flex-col rounded-2xl border border-warm-100 bg-white p-8 shadow-sm">
                   <svg className="h-8 w-8 text-teal-200" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                   </svg>
@@ -435,134 +709,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* For Trainers CTA */}
-      <section className="bg-gradient-to-br from-teal-950 via-teal-900 to-teal-950 py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
-            <AnimateIn>
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-widest text-teal-300">For Trainers</p>
-                <h2 className="mt-3 font-display text-3xl font-bold text-white sm:text-4xl">
-                  Grow Your Training Business
-                </h2>
-                <p className="mt-4 text-lg leading-relaxed text-teal-200/80">
-                  Join hundreds of trainers already growing their client base through AnywherePT. Focus on training while we handle the rest.
-                </p>
-                <ul className="mt-8 space-y-4">
-                  {[
-                    "Get matched with clients looking for your expertise",
-                    "Manage your schedule and bookings in one place",
-                    "Receive secure, on-time payments after every session",
-                    "Build your reputation with verified reviews",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-teal-100">
-                      <svg className="mt-0.5 h-5 w-5 shrink-0 text-teal-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                      <span className="text-sm">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href="/for-trainers"
-                  className="mt-8 inline-block rounded-xl bg-coral-500 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-coral-600"
-                >
-                  Learn More
-                </Link>
-              </div>
-            </AnimateIn>
-            <AnimateIn delay={200}>
-              <div className="rounded-2xl bg-white/5 p-8 backdrop-blur-sm">
-                <div className="space-y-4">
-                  {[
-                    { label: "Average monthly earnings", value: "$4,200" },
-                    { label: "New client enquiries per month", value: "12+" },
-                    { label: "Session completion rate", value: "97%" },
-                    { label: "Average trainer rating", value: "4.8/5" },
-                  ].map((stat) => (
-                    <div key={stat.label} className="flex items-center justify-between rounded-xl bg-white/5 px-5 py-4">
-                      <span className="text-sm text-teal-200/80">{stat.label}</span>
-                      <span className="font-display text-lg font-bold text-white">{stat.value}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </AnimateIn>
-          </div>
-        </div>
-      </section>
-
-      {/* For Gyms CTA */}
-      <section className="bg-white py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
-            <AnimateIn delay={100}>
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  { value: "40%", label: "More foot traffic" },
-                  { value: "25+", label: "Partner gyms" },
-                  { value: "$2,500", label: "Avg monthly revenue" },
-                  { value: "100%", label: "Free to join" },
-                ].map((s) => (
-                  <div key={s.label} className="rounded-2xl border border-warm-100 bg-cream p-6 text-center">
-                    <p className="font-display text-2xl font-bold text-teal-700">{s.value}</p>
-                    <p className="mt-1 text-xs text-warm-500">{s.label}</p>
-                  </div>
-                ))}
-              </div>
-            </AnimateIn>
-            <AnimateIn>
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-widest text-teal-600">For Gyms</p>
-                <h2 className="mt-3 font-display text-3xl font-bold text-warm-900 sm:text-4xl">
-                  Partner With AnywherePT
-                </h2>
-                <p className="mt-4 text-lg leading-relaxed text-warm-500">
-                  Open your doors to more clients by hosting AnywherePT trainers. Increase foot traffic and revenue with zero upfront cost.
-                </p>
-                <Link
-                  href="/for-gyms"
-                  className="mt-8 inline-block rounded-xl bg-teal-600 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-teal-700"
-                >
-                  Partner With Us
-                </Link>
-              </div>
-            </AnimateIn>
-          </div>
-        </div>
-      </section>
-
-      {/* Enterprise CTA */}
-      <section className="bg-cream py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <AnimateIn>
-            <div className="mx-auto max-w-3xl text-center">
-              <p className="text-sm font-semibold uppercase tracking-widest text-teal-600">Corporate Wellness</p>
-              <h2 className="mt-3 font-display text-3xl font-bold text-warm-900 sm:text-4xl">
-                Health is Wealth &mdash; For Your Team
-              </h2>
-              <p className="mt-4 text-lg leading-relaxed text-warm-500">
-                Invest in your employees&apos; health with corporate fitness programs. Reduce sick days, boost morale, and build a healthier workplace.
-              </p>
-              <div className="mt-8 flex justify-center gap-4">
-                <Link
-                  href="/enterprise"
-                  className="rounded-xl bg-teal-600 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-teal-700"
-                >
-                  Learn More
-                </Link>
-                <Link
-                  href="/contact"
-                  className="rounded-xl border-2 border-teal-600 px-8 py-3.5 text-sm font-semibold text-teal-700 transition-colors hover:bg-teal-50"
-                >
-                  Contact Sales
-                </Link>
-              </div>
-            </div>
-          </AnimateIn>
-        </div>
-      </section>
-
       {/* Newsletter */}
       <section className="bg-teal-900 py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -571,7 +717,7 @@ export default function HomePage() {
               <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">
                 Stay in the Loop
               </h2>
-              <p className="mt-3 text-sm text-teal-200/80">
+              <p className="mt-3 text-sm text-white/70">
                 Get the latest fitness tips, new trainer profiles, and exclusive offers delivered to your inbox.
               </p>
               <form onSubmit={handleNewsletterSubmit} className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -581,12 +727,12 @@ export default function HomePage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="flex-1 rounded-xl border-0 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-teal-300/60 backdrop-blur-sm focus:ring-2 focus:ring-teal-400"
+                  className="flex-1 rounded-full border-0 bg-white/10 px-5 py-3 text-sm text-white placeholder:text-white/50 backdrop-blur-sm focus:ring-2 focus:ring-teal-400"
                 />
                 <button
                   type="submit"
                   disabled={newsletterStatus === "sending"}
-                  className="rounded-xl bg-coral-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-coral-600 disabled:opacity-60"
+                  className="rounded-full bg-coral-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-coral-600 disabled:opacity-60"
                 >
                   {newsletterStatus === "sending" ? "Subscribing..." : "Subscribe"}
                 </button>

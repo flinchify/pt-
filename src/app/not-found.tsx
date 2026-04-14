@@ -11,7 +11,7 @@ export default function NotFoundPage() {
             xmlns="http://www.w3.org/2000/svg"
             className="h-full w-full"
           >
-            <circle cx="100" cy="100" r="90" fill="#F0FDFA" stroke="#99F6E4" strokeWidth="2" />
+            <circle cx="100" cy="100" r="90" fill="#F0FDF4" stroke="#BBF7D0" strokeWidth="2" />
             <text
               x="100"
               y="95"
@@ -20,13 +20,13 @@ export default function NotFoundPage() {
               className="font-display"
               fontSize="56"
               fontWeight="700"
-              fill="#0F766E"
+              fill="#0A6847"
             >
               404
             </text>
             <path
               d="M70 140 Q100 125 130 140"
-              stroke="#0D9488"
+              stroke="#16A34A"
               strokeWidth="3"
               strokeLinecap="round"
               fill="none"
@@ -44,13 +44,13 @@ export default function NotFoundPage() {
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
           <Link
             href="/"
-            className="rounded-xl bg-teal-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-teal-700"
+            className="rounded-full bg-teal-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-teal-700"
           >
             Go Home
           </Link>
           <Link
             href="/trainers"
-            className="rounded-xl border border-warm-200 px-6 py-3 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-50"
+            className="rounded-full border border-warm-200 px-6 py-3 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-50"
           >
             Find Trainers
           </Link>

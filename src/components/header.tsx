@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useAuth } from "./auth-provider";
 
@@ -60,7 +61,6 @@ export function Header() {
     : "bg-white/95 backdrop-blur-md shadow-sm";
 
   const textColor = isTransparent ? "text-white" : "text-warm-800";
-  const logoColor = isTransparent ? "text-white" : "text-teal-900";
 
   const handleLogout = useCallback(async () => {
     setUserMenuOpen(false);
@@ -73,11 +73,15 @@ export function Header() {
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 lg:px-8">
         {/* Logo */}
-        <Link
-          href="/"
-          className={`font-display text-xl font-bold tracking-tight ${logoColor}`}
-        >
-          AnywherePT
+        <Link href="/" className="flex items-center gap-2">
+          <Image
+            src="/logo.png"
+            alt="AnywherePT"
+            width={120}
+            height={44}
+            className="h-10 w-auto"
+            priority
+          />
         </Link>
 
         {/* Desktop Nav */}
@@ -148,7 +152,7 @@ export function Header() {
                 onClick={() => setUserMenuOpen(!userMenuOpen)}
                 className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-white/10 ${textColor}`}
               >
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-teal-600 text-sm font-bold text-white">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-teal-700 text-sm font-bold text-white">
                   {(user.name || user.email).charAt(0).toUpperCase()}
                 </div>
                 <span className="max-w-[120px] truncate">
@@ -202,9 +206,9 @@ export function Header() {
               </button>
               <button
                 onClick={openSignup}
-                className="rounded-lg bg-coral-500 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-coral-600"
+                className="rounded-full bg-coral-500 px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-coral-600"
               >
-                Sign Up
+                Get Started
               </button>
             </>
           )}
@@ -293,9 +297,9 @@ export function Header() {
                     setMobileOpen(false);
                     openSignup();
                   }}
-                  className="flex-1 rounded-lg bg-coral-500 py-2.5 text-center text-sm font-semibold text-white"
+                  className="flex-1 rounded-full bg-coral-500 py-2.5 text-center text-sm font-semibold text-white"
                 >
-                  Sign Up
+                  Get Started
                 </button>
               </div>
             )}

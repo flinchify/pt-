@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { AnimateIn } from "@/components/animate-in";
 
 export default function ForGymsPage() {
@@ -8,17 +9,25 @@ export default function ForGymsPage() {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-br from-teal-950 via-teal-900 to-teal-950 py-24 sm:py-32">
+        <Image
+          src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80"
+          alt="Modern gym interior with equipment"
+          fill
+          className="object-cover opacity-30"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-teal-950/60 via-teal-950/40 to-teal-950/80" />
         <div className="hero-grid-pattern absolute inset-0" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-widest text-teal-300">For Gyms</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-teal-300">For Gyms</p>
             <h1 className="mt-4 font-display text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
               Partner Your Gym with AnywherePT
             </h1>
             <p className="mt-6 text-lg text-teal-200/80">
               Increase foot traffic, fill off-peak hours, and earn additional revenue by hosting AnywherePT trainers and their clients at your facility.
             </p>
-            <Link href="/signup?role=gym" className="mt-8 inline-block rounded-xl bg-coral-500 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-coral-600">
+            <Link href="/signup?role=gym" className="mt-8 inline-block rounded-full bg-coral-500 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-coral-600">
               Register Your Gym
             </Link>
           </div>
@@ -30,7 +39,8 @@ export default function ForGymsPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimateIn>
             <div className="mx-auto max-w-2xl text-center">
-              <h2 className="font-display text-3xl font-bold text-warm-900 sm:text-4xl">Benefits for Your Gym</h2>
+              <p className="text-xs font-bold uppercase tracking-widest text-teal-600">Why Partner With Us</p>
+              <h2 className="mt-3 font-display text-3xl font-bold text-warm-900 sm:text-4xl">Benefits for Your Gym</h2>
               <p className="mt-4 text-warm-500">Zero upfront cost, zero risk. Earn more from your existing space.</p>
             </div>
           </AnimateIn>
@@ -86,7 +96,7 @@ export default function ForGymsPage() {
             ].map((item, i) => (
               <AnimateIn key={item.title} delay={i * 100}>
                 <div className="flex gap-5 rounded-2xl border border-warm-100 bg-white p-6 transition-shadow hover:shadow-lg">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-teal-50 text-teal-600">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-teal-50 text-teal-600">
                     {item.icon}
                   </div>
                   <div>
@@ -100,11 +110,35 @@ export default function ForGymsPage() {
         </div>
       </section>
 
+      {/* Gym Showcase Image */}
+      <section className="py-0">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="relative h-72 overflow-hidden rounded-2xl sm:h-96">
+            <Image
+              src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=1200&q=80"
+              alt="People working out in a modern gym facility"
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-teal-950/50 to-transparent" />
+            <div className="absolute bottom-6 left-6 sm:bottom-10 sm:left-10">
+              <p className="text-xs font-bold uppercase tracking-widest text-teal-200">Our Network</p>
+              <p className="mt-2 max-w-md text-lg font-semibold text-white sm:text-xl">
+                Join a growing network of gyms across the country already partnered with AnywherePT.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* How It Works */}
-      <section className="border-y border-warm-200/60 bg-cream py-20">
+      <section className="border-y border-warm-200/60 bg-cream py-20 mt-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimateIn>
-            <h2 className="text-center font-display text-3xl font-bold text-warm-900 sm:text-4xl">How It Works</h2>
+            <div className="text-center">
+              <p className="text-xs font-bold uppercase tracking-widest text-teal-600">Getting Started</p>
+              <h2 className="mt-3 font-display text-3xl font-bold text-warm-900 sm:text-4xl">How It Works</h2>
+            </div>
           </AnimateIn>
 
           <div className="mt-14 grid gap-8 sm:grid-cols-3">
@@ -138,8 +172,15 @@ export default function ForGymsPage() {
       </section>
 
       {/* Stats */}
-      <section className="bg-teal-900 py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative bg-teal-900 py-16 overflow-hidden">
+        <Image
+          src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=1920&q=80"
+          alt="Gym equipment and training area"
+          fill
+          className="object-cover opacity-15"
+        />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <p className="mb-8 text-center text-xs font-bold uppercase tracking-widest text-teal-300">By The Numbers</p>
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
             {[
               { value: "25+", label: "Partner Gyms" },
@@ -160,14 +201,23 @@ export default function ForGymsPage() {
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimateIn>
-            <div className="rounded-2xl bg-gradient-to-r from-teal-600 to-teal-700 p-10 text-center sm:p-16">
-              <h2 className="font-display text-3xl font-bold text-white">Ready to Partner?</h2>
-              <p className="mt-4 text-teal-100">
-                Join the growing network of gyms earning additional revenue through AnywherePT. Registration is free and takes minutes.
-              </p>
-              <Link href="/signup?role=gym" className="mt-8 inline-block rounded-xl bg-white px-8 py-3.5 text-sm font-semibold text-teal-700 transition-colors hover:bg-teal-50">
-                Register Your Gym
-              </Link>
+            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-teal-600 to-teal-700 p-10 text-center sm:p-16">
+              <Image
+                src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=1200&q=80"
+                alt="Personal trainer working with client in gym"
+                fill
+                className="object-cover opacity-10"
+              />
+              <div className="relative">
+                <p className="text-xs font-bold uppercase tracking-widest text-teal-200">Get Started Today</p>
+                <h2 className="mt-3 font-display text-3xl font-bold text-white">Ready to Partner?</h2>
+                <p className="mt-4 text-teal-100">
+                  Join the growing network of gyms earning additional revenue through AnywherePT. Registration is free and takes minutes.
+                </p>
+                <Link href="/signup?role=gym" className="mt-8 inline-block rounded-full bg-white px-8 py-3.5 text-sm font-semibold text-teal-700 transition-colors hover:bg-teal-50">
+                  Register Your Gym
+                </Link>
+              </div>
             </div>
           </AnimateIn>
         </div>

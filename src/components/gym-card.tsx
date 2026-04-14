@@ -42,7 +42,7 @@ export function GymCard({
               height="40"
               viewBox="0 0 24 24"
               fill="none"
-              stroke="#0D9488"
+              stroke="#0A6847"
               strokeWidth="1.5"
             >
               <path d="M18 20V6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v14" />

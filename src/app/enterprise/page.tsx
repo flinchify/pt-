@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { AnimateIn } from "@/components/animate-in";
 
 export default function EnterprisePage() {
@@ -96,10 +97,17 @@ export default function EnterprisePage() {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-br from-teal-950 via-teal-900 to-teal-950 py-24 sm:py-32">
-        <div className="hero-grid-pattern absolute inset-0" />
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=1920&q=80"
+            alt="Corporate wellness and fitness"
+            className="h-full w-full object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-teal-950/80 via-teal-900/70 to-teal-950/80" />
+        </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-widest text-teal-300">Corporate Wellness</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-teal-300">Corporate Wellness</p>
             <h1 className="mt-4 font-display text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
               Health is Wealth &mdash; For Your Team
             </h1>
@@ -107,10 +115,10 @@ export default function EnterprisePage() {
               Invest in your employees&apos; wellbeing with corporate fitness programs powered by AnywherePT. Healthier teams, better business outcomes.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <a href="#demo" className="rounded-xl bg-coral-500 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-coral-600">
+              <a href="#demo" className="rounded-full bg-coral-500 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-coral-600">
                 Request a Demo
               </a>
-              <a href="#plans" className="rounded-xl border-2 border-white/30 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:border-white/60">
+              <a href="#plans" className="rounded-full border-2 border-white/30 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:border-white/60">
                 View Plans
               </a>
             </div>
@@ -123,7 +131,8 @@ export default function EnterprisePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimateIn>
             <div className="mx-auto max-w-2xl text-center">
-              <h2 className="font-display text-3xl font-bold text-warm-900 sm:text-4xl">Why Corporate Wellness?</h2>
+              <p className="text-xs font-bold uppercase tracking-widest text-teal-600">The Business Case</p>
+              <h2 className="mt-3 font-display text-3xl font-bold text-warm-900 sm:text-4xl">Why Corporate Wellness?</h2>
             </div>
           </AnimateIn>
 
@@ -150,7 +159,10 @@ export default function EnterprisePage() {
       <section className="border-y border-warm-200/60 bg-cream py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimateIn>
-            <h2 className="text-center font-display text-3xl font-bold text-warm-900 sm:text-4xl">How It Works</h2>
+            <div className="text-center">
+              <p className="text-xs font-bold uppercase tracking-widest text-teal-600">Getting Started</p>
+              <h2 className="mt-3 font-display text-3xl font-bold text-warm-900 sm:text-4xl">How It Works</h2>
+            </div>
           </AnimateIn>
 
           <div className="mt-14 grid gap-8 sm:grid-cols-4">
@@ -171,6 +183,15 @@ export default function EnterprisePage() {
               </AnimateIn>
             ))}
           </div>
+
+          {/* Corporate wellness image */}
+          <div className="mt-16 overflow-hidden rounded-2xl">
+            <img
+              src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1200&q=80"
+              alt="Team fitness training session in a modern office gym"
+              className="h-64 w-full object-cover sm:h-80"
+            />
+          </div>
         </div>
       </section>
 
@@ -180,7 +201,8 @@ export default function EnterprisePage() {
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <AnimateIn>
               <div>
-                <h2 className="font-display text-3xl font-bold text-warm-900">ROI Calculator</h2>
+                <p className="text-xs font-bold uppercase tracking-widest text-teal-600">Measure Your Impact</p>
+                <h2 className="mt-3 font-display text-3xl font-bold text-warm-900">ROI Calculator</h2>
                 <p className="mt-3 text-warm-500">
                   See the potential return on investment from a corporate wellness program. Adjust the slider to match your company size.
                 </p>
@@ -239,11 +261,29 @@ export default function EnterprisePage() {
         </div>
       </section>
 
+      {/* Corporate fitness image break */}
+      <section className="relative h-64 sm:h-80 overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=1600&q=80"
+          alt="Employees exercising together in a corporate wellness program"
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-teal-950/40" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <p className="text-center font-display text-2xl font-bold text-white sm:text-3xl lg:text-4xl">
+            Empower your team to move more
+          </p>
+        </div>
+      </section>
+
       {/* Plans */}
       <section id="plans" className="border-y border-warm-200/60 bg-cream py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimateIn>
-            <h2 className="text-center font-display text-3xl font-bold text-warm-900 sm:text-4xl">Enterprise Plans</h2>
+            <div className="text-center">
+              <p className="text-xs font-bold uppercase tracking-widest text-teal-600">Pricing</p>
+              <h2 className="mt-3 font-display text-3xl font-bold text-warm-900 sm:text-4xl">Enterprise Plans</h2>
+            </div>
           </AnimateIn>
 
           <div className="mt-12 grid gap-8 sm:grid-cols-3">
@@ -275,7 +315,7 @@ export default function EnterprisePage() {
                   </ul>
                   <a
                     href="#demo"
-                    className={`mt-8 block rounded-xl py-3 text-center text-sm font-semibold transition-colors ${
+                    className={`mt-8 block rounded-full py-3 text-center text-sm font-semibold transition-colors ${
                       plan.popular
                         ? "bg-coral-500 text-white hover:bg-coral-600"
                         : "bg-teal-600 text-white hover:bg-teal-700"
@@ -295,7 +335,8 @@ export default function EnterprisePage() {
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <AnimateIn>
             <div className="text-center">
-              <h2 className="font-display text-3xl font-bold text-warm-900 sm:text-4xl">Request a Demo</h2>
+              <p className="text-xs font-bold uppercase tracking-widest text-teal-600">Get in Touch</p>
+              <h2 className="mt-3 font-display text-3xl font-bold text-warm-900 sm:text-4xl">Request a Demo</h2>
               <p className="mt-4 text-warm-500">
                 See how AnywherePT can transform your workplace wellness. We will set up a personalised demo for your team.
               </p>
@@ -348,7 +389,7 @@ export default function EnterprisePage() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full rounded-xl bg-coral-500 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-coral-600 disabled:opacity-60"
+                className="w-full rounded-full bg-coral-500 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-coral-600 disabled:opacity-60"
               >
                 {submitting ? "Sending..." : "Request Demo"}
               </button>

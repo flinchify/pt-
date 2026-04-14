@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { AnimateIn } from "@/components/animate-in";
 
 export default function ForTrainersPage() {
@@ -16,10 +17,17 @@ export default function ForTrainersPage() {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-br from-teal-950 via-teal-900 to-teal-950 py-24 sm:py-32">
-        <div className="hero-grid-pattern absolute inset-0" />
+        <Image
+          src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1920&q=80"
+          alt="Personal trainer working with a client"
+          fill
+          className="object-cover opacity-20"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-teal-950/60 via-teal-900/40 to-teal-950/80" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-widest text-teal-300">For Personal Trainers</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-teal-300">For Personal Trainers</p>
             <h1 className="mt-4 font-display text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
               Grow Your Training Business with AnywherePT
             </h1>
@@ -27,10 +35,10 @@ export default function ForTrainersPage() {
               Join hundreds of trainers who are building their client base, managing their schedule, and earning more through Australia&apos;s leading trainer marketplace.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Link href="/signup?role=trainer" className="rounded-xl bg-coral-500 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-coral-600">
+              <Link href="/signup?role=trainer" className="rounded-full bg-coral-500 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-coral-600">
                 Apply to Join
               </Link>
-              <Link href="/contact" className="rounded-xl border-2 border-white/30 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:border-white/60">
+              <Link href="/contact" className="rounded-full border-2 border-white/30 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:border-white/60">
                 Contact Us
               </Link>
             </div>
@@ -43,7 +51,8 @@ export default function ForTrainersPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimateIn>
             <div className="mx-auto max-w-2xl text-center">
-              <h2 className="font-display text-3xl font-bold text-warm-900 sm:text-4xl">Why Join AnywherePT?</h2>
+              <p className="text-xs font-bold uppercase tracking-widest text-teal-600">The Platform</p>
+              <h2 className="mt-3 font-display text-3xl font-bold text-warm-900 sm:text-4xl">Why Join AnywherePT?</h2>
               <p className="mt-4 text-warm-500">Everything you need to grow and manage your personal training business, all in one place.</p>
             </div>
           </AnimateIn>
@@ -97,7 +106,7 @@ export default function ForTrainersPage() {
             ].map((item, i) => (
               <AnimateIn key={item.title} delay={i * 100}>
                 <div className="rounded-2xl border border-warm-100 bg-white p-6 transition-shadow hover:shadow-lg">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-teal-50 text-teal-600">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-teal-50 text-teal-600">
                     {item.icon}
                   </div>
                   <h3 className="mt-4 font-display text-lg font-bold text-warm-900">{item.title}</h3>
@@ -109,13 +118,25 @@ export default function ForTrainersPage() {
         </div>
       </section>
 
+      {/* Trainer Lifestyle Image Break */}
+      <section className="relative h-64 sm:h-80 lg:h-96">
+        <Image
+          src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80"
+          alt="Modern gym environment with equipment"
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-teal-900/40 to-transparent" />
+      </section>
+
       {/* Earnings Calculator */}
       <section className="border-y border-warm-200/60 bg-cream py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <AnimateIn>
               <div>
-                <h2 className="font-display text-3xl font-bold text-warm-900">Earnings Calculator</h2>
+                <p className="text-xs font-bold uppercase tracking-widest text-teal-600">Your Potential</p>
+                <h2 className="mt-3 font-display text-3xl font-bold text-warm-900">Earnings Calculator</h2>
                 <p className="mt-3 text-warm-500">
                   See how much you could earn on AnywherePT. Adjust the slider to match your availability.
                 </p>
@@ -162,7 +183,7 @@ export default function ForTrainersPage() {
                     <p className="mt-1 font-display text-3xl font-bold text-teal-700">${Math.round(monthlyNet).toLocaleString()}</p>
                   </div>
                 </div>
-                <div className="mt-6 rounded-xl bg-teal-50 p-4">
+                <div className="mt-6 rounded-full bg-teal-50 p-4">
                   <p className="text-center text-sm text-teal-700">
                     Estimated annual earnings: <span className="font-bold">${Math.round(monthlyNet * 12).toLocaleString()}</span>
                   </p>
@@ -178,7 +199,8 @@ export default function ForTrainersPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimateIn>
             <div className="mx-auto max-w-2xl text-center">
-              <h2 className="font-display text-3xl font-bold text-warm-900 sm:text-4xl">How Verification Works</h2>
+              <p className="text-xs font-bold uppercase tracking-widest text-teal-600">Getting Started</p>
+              <h2 className="mt-3 font-display text-3xl font-bold text-warm-900 sm:text-4xl">How Verification Works</h2>
               <p className="mt-4 text-warm-500">We verify every trainer to ensure quality and safety for our community.</p>
             </div>
           </AnimateIn>
@@ -205,10 +227,13 @@ export default function ForTrainersPage() {
       </section>
 
       {/* Trainer Testimonials */}
-      <section className="border-y border-warm-200/60 bg-cream py-20">
+      <section className="relative border-y border-warm-200/60 bg-cream py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimateIn>
-            <h2 className="text-center font-display text-3xl font-bold text-warm-900">What Trainers Say</h2>
+            <div className="mx-auto max-w-2xl text-center">
+              <p className="text-xs font-bold uppercase tracking-widest text-teal-600">Testimonials</p>
+              <h2 className="mt-3 font-display text-3xl font-bold text-warm-900">What Trainers Say</h2>
+            </div>
           </AnimateIn>
 
           <div className="mt-12 grid gap-8 sm:grid-cols-3">
@@ -216,16 +241,19 @@ export default function ForTrainersPage() {
               {
                 name: "Marcus Thompson",
                 location: "Sydney, NSW",
+                image: "https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=200&q=80",
                 quote: "AnywherePT transformed my business. I went from struggling to find clients to having a fully booked schedule within three months. The platform handles all the admin so I can focus on what I love: training.",
               },
               {
                 name: "Priya Sharma",
                 location: "Melbourne, VIC",
+                image: "https://images.unsplash.com/photo-1594381898411-846e7d193883?w=200&q=80",
                 quote: "The secure payments and professional profile page have made a huge difference. My clients love the easy booking system, and I love getting paid on time every week without chasing invoices.",
               },
               {
                 name: "Chris Wallace",
                 location: "Brisbane, QLD",
+                image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=200&q=80",
                 quote: "Being verified on AnywherePT instantly builds trust with new clients. The scheduling tools are excellent, and the support team actually responds when you need help. Highly recommended.",
               },
             ].map((t, i) => (
@@ -235,9 +263,19 @@ export default function ForTrainersPage() {
                     <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                   </svg>
                   <p className="mt-4 flex-1 text-sm leading-relaxed text-warm-600">{t.quote}</p>
-                  <div className="mt-6 border-t border-warm-100 pt-4">
-                    <p className="text-sm font-semibold text-warm-900">{t.name}</p>
-                    <p className="text-xs text-warm-500">{t.location}</p>
+                  <div className="mt-6 flex items-center gap-3 border-t border-warm-100 pt-4">
+                    <div className="relative h-10 w-10 overflow-hidden rounded-full">
+                      <Image
+                        src={t.image}
+                        alt={t.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-warm-900">{t.name}</p>
+                      <p className="text-xs text-warm-500">{t.location}</p>
+                    </div>
                   </div>
                 </div>
               </AnimateIn>
@@ -247,11 +285,18 @@ export default function ForTrainersPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-teal-900 py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative bg-teal-900 py-20">
+        <Image
+          src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=1920&q=80"
+          alt="Fitness training session outdoors"
+          fill
+          className="object-cover opacity-15"
+        />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimateIn>
             <div className="mx-auto max-w-2xl text-center">
-              <h2 className="font-display text-3xl font-bold text-white sm:text-4xl">
+              <p className="text-xs font-bold uppercase tracking-widest text-teal-300">Get Started Today</p>
+              <h2 className="mt-3 font-display text-3xl font-bold text-white sm:text-4xl">
                 Ready to Grow Your Business?
               </h2>
               <p className="mt-4 text-teal-200/80">
@@ -259,7 +304,7 @@ export default function ForTrainersPage() {
               </p>
               <Link
                 href="/signup?role=trainer"
-                className="mt-8 inline-block rounded-xl bg-coral-500 px-10 py-4 text-sm font-semibold text-white transition-colors hover:bg-coral-600"
+                className="mt-8 inline-block rounded-full bg-coral-500 px-10 py-4 text-sm font-semibold text-white transition-colors hover:bg-coral-600"
               >
                 Apply Now
               </Link>

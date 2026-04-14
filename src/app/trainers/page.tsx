@@ -102,7 +102,8 @@ function TrainersPageContent() {
       {/* Page Header */}
       <section className="border-b border-warm-200/60 bg-cream py-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h1 className="font-display text-3xl font-bold text-warm-900 sm:text-4xl">
+          <p className="text-xs font-semibold uppercase tracking-widest text-teal-600">Our Trainers</p>
+          <h1 className="mt-2 font-display text-3xl font-bold text-warm-900 sm:text-4xl">
             Find Personal Trainers
           </h1>
           <p className="mt-2 text-warm-500">
@@ -119,7 +120,7 @@ function TrainersPageContent() {
           </p>
           <button
             onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
-            className="flex items-center gap-2 rounded-lg border border-warm-200 px-4 py-2 text-sm font-medium text-warm-700"
+            className="flex items-center gap-2 rounded-full border border-warm-200 px-4 py-2 text-sm font-medium text-warm-700"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               <line x1="4" y1="21" x2="4" y2="14" />
@@ -166,7 +167,7 @@ function TrainersPageContent() {
               </p>
               <button
                 onClick={() => setMapView(!mapView)}
-                className="flex items-center gap-2 rounded-lg border border-warm-200 px-4 py-2 text-sm font-medium text-warm-700 transition-colors hover:bg-warm-50"
+                className="flex items-center gap-2 rounded-full border border-warm-200 px-4 py-2 text-sm font-medium text-warm-700 transition-colors hover:bg-warm-50"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   {mapView ? (
@@ -230,7 +231,7 @@ function TrainersPageContent() {
                     <button
                       onClick={() => setPage(Math.max(1, page - 1))}
                       disabled={page === 1}
-                      className="rounded-lg border border-warm-200 px-3 py-2 text-sm text-warm-600 transition-colors hover:bg-warm-50 disabled:opacity-40"
+                      className="rounded-full border border-warm-200 px-4 py-2 text-sm text-warm-600 transition-colors hover:bg-warm-50 disabled:opacity-40"
                     >
                       Previous
                     </button>
@@ -240,7 +241,7 @@ function TrainersPageContent() {
                         <button
                           key={p}
                           onClick={() => setPage(p)}
-                          className={`h-10 w-10 rounded-lg text-sm font-medium transition-colors ${
+                          className={`h-10 w-10 rounded-full text-sm font-medium transition-colors ${
                             page === p
                               ? "bg-teal-600 text-white"
                               : "border border-warm-200 text-warm-600 hover:bg-warm-50"
@@ -256,7 +257,7 @@ function TrainersPageContent() {
                     <button
                       onClick={() => setPage(Math.min(totalPages, page + 1))}
                       disabled={page === totalPages}
-                      className="rounded-lg border border-warm-200 px-3 py-2 text-sm text-warm-600 transition-colors hover:bg-warm-50 disabled:opacity-40"
+                      className="rounded-full border border-warm-200 px-4 py-2 text-sm text-warm-600 transition-colors hover:bg-warm-50 disabled:opacity-40"
                     >
                       Next
                     </button>
@@ -269,11 +270,12 @@ function TrainersPageContent() {
                   <circle cx="11" cy="11" r="8" />
                   <path d="M21 21l-4.35-4.35" />
                 </svg>
-                <h3 className="mt-4 font-display text-lg font-semibold text-warm-700">No trainers found</h3>
+                <p className="mt-4 text-xs font-semibold uppercase tracking-widest text-teal-600">Search Results</p>
+                <h3 className="mt-1 font-display text-lg font-semibold text-warm-700">No trainers found</h3>
                 <p className="mt-1 text-sm text-warm-500">Try adjusting your filters or search criteria.</p>
                 <button
                   onClick={handleReset}
-                  className="mt-4 rounded-lg bg-teal-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-teal-700"
+                  className="mt-4 rounded-full bg-teal-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-teal-700"
                 >
                   Reset Filters
                 </button>

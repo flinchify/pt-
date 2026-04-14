@@ -347,7 +347,7 @@ function BookingFlow() {
                     <img src={trainer.avatar_url} alt={trainer.name} className="h-full w-full object-cover" />
                   ) : (
                     <div className="flex h-full w-full items-center justify-center">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0D9488" strokeWidth="1.5">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0A6847" strokeWidth="1.5">
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                         <circle cx="12" cy="7" r="4" />
                       </svg>

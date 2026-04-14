@@ -119,18 +119,22 @@ export default function PricingPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-teal-950 via-teal-900 to-teal-950 py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#0A1F1B] via-[#0A4830] to-[#0A6847] py-24 sm:py-32">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(16,185,129,0.12),transparent_60%)]" />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <h1 className="font-display text-4xl font-bold text-white sm:text-5xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-300/70">
+              Pricing Plans
+            </p>
+            <h1 className="mt-4 font-display text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
               Simple, Transparent Pricing
             </h1>
-            <p className="mt-4 text-lg text-teal-200/80">
+            <p className="mt-5 text-lg leading-relaxed text-teal-200/80">
               Choose the plan that fits your training goals. No hidden fees, cancel anytime.
             </p>
 
             {/* Toggle */}
-            <div className="mt-8 flex items-center justify-center gap-3">
+            <div className="mt-10 flex items-center justify-center gap-3">
               <span className={`text-sm font-medium ${!annual ? "text-white" : "text-teal-300/60"}`}>Monthly</span>
               <button
                 onClick={() => setAnnual(!annual)}
@@ -184,7 +188,7 @@ export default function PricingPage() {
                   </ul>
                   <Link
                     href={plan.href}
-                    className={`mt-8 block rounded-xl py-3 text-center text-sm font-semibold transition-colors ${
+                    className={`mt-8 block rounded-full py-3 text-center text-sm font-semibold transition-colors ${
                       plan.popular
                         ? "bg-coral-500 text-white hover:bg-coral-600"
                         : "bg-teal-600 text-white hover:bg-teal-700"
@@ -204,13 +208,16 @@ export default function PricingPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimateIn>
             <div className="mx-auto max-w-3xl text-center">
-              <h2 className="font-display text-3xl font-bold text-warm-900">Enterprise</h2>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-600">
+                For Teams
+              </p>
+              <h2 className="mt-3 font-display text-3xl font-bold text-warm-900">Enterprise</h2>
               <p className="mt-4 text-warm-500">
                 Looking for corporate wellness solutions for your team? We offer custom packages with volume pricing, dedicated account management, and comprehensive reporting.
               </p>
               <Link
                 href="/enterprise"
-                className="mt-6 inline-block rounded-xl bg-teal-600 px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-teal-700"
+                className="mt-6 inline-block rounded-full bg-teal-600 px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-teal-700"
               >
                 Contact Sales
               </Link>
@@ -223,7 +230,12 @@ export default function PricingPage() {
       <section className="py-20">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <AnimateIn>
-            <h2 className="text-center font-display text-3xl font-bold text-warm-900">Feature Comparison</h2>
+            <div className="text-center">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-600">
+                Plan Details
+              </p>
+              <h2 className="mt-3 font-display text-3xl font-bold text-warm-900">Feature Comparison</h2>
+            </div>
           </AnimateIn>
           <div className="mt-10 overflow-x-auto">
             <table className="w-full min-w-[600px]">
@@ -260,9 +272,14 @@ export default function PricingPage() {
       <section className="border-t border-warm-200/60 bg-cream py-20">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <AnimateIn>
-            <h2 className="text-center font-display text-3xl font-bold text-warm-900">
-              Frequently Asked Questions
-            </h2>
+            <div className="text-center">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-600">
+                Support
+              </p>
+              <h2 className="mt-3 font-display text-3xl font-bold text-warm-900">
+                Frequently Asked Questions
+              </h2>
+            </div>
           </AnimateIn>
           <div className="mt-10 space-y-3">
             {faqs.map((faq, i) => (
