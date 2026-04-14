@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { AnimateIn } from "@/components/animate-in";
 import { TrainerCard } from "@/components/trainer-card";
+import { LocationInput } from "@/components/location-input";
 
 const CATEGORIES = [
   "Strength",
@@ -178,16 +179,12 @@ export default function HomePage() {
             >
               <div className="flex flex-col gap-3 rounded-2xl bg-white/10 p-3 backdrop-blur-md sm:flex-row">
                 <div className="relative flex-1">
-                  <svg className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-warm-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                    <circle cx="12" cy="10" r="3" />
-                  </svg>
-                  <input
-                    type="text"
-                    placeholder="Suburb or city"
+                  <LocationInput
                     value={searchLocation}
-                    onChange={(e) => setSearchLocation(e.target.value)}
-                    className="w-full rounded-xl border-0 bg-white py-3.5 pl-10 pr-4 text-sm text-warm-800 placeholder:text-warm-400 focus:ring-2 focus:ring-teal-500"
+                    onChange={setSearchLocation}
+                    placeholder="Suburb or city"
+                    dark={false}
+                    className=""
                   />
                 </div>
                 <select

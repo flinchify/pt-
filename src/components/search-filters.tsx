@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { PriceRangeSlider } from "./price-range-slider";
+import { LocationInput } from "./location-input";
 
 const SPECIALISATIONS = [
   "Strength Training",
@@ -134,15 +135,13 @@ export function SearchFilters({
           <ChevronIcon open={expanded.location} />
         </button>
         {expanded.location && (
-          <input
-            type="text"
-            placeholder="Suburb or postcode"
-            value={values.location}
-            onChange={(e) =>
-              onChange({ ...values, location: e.target.value })
-            }
-            className="mt-2 w-full rounded-lg border border-warm-200 px-3 py-2 text-sm text-warm-800 placeholder:text-warm-400"
-          />
+          <div className="mt-2">
+            <LocationInput
+              value={values.location}
+              onChange={(loc) => onChange({ ...values, location: loc })}
+              placeholder="Suburb or postcode"
+            />
+          </div>
         )}
       </div>
 
