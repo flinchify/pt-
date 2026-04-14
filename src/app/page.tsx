@@ -144,9 +144,6 @@ export default function HomePage() {
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="mx-auto max-w-4xl text-center"
           >
-            <p className="mb-4 inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-semibold uppercase tracking-widest text-teal-300 backdrop-blur-sm">
-              Australia&apos;s Trainer Marketplace
-            </p>
             <h1 className="font-display text-5xl font-bold leading-tight text-white sm:text-6xl lg:text-7xl">
               Health is Wealth
             </h1>
@@ -165,7 +162,7 @@ export default function HomePage() {
                 <Link
                   key={cat}
                   href={`/trainers?specialisation=${encodeURIComponent(cat)}`}
-                  className="rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm transition-all hover:border-white/40 hover:bg-white/20"
+                  className="rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm transition-all hover:border-white/40 hover:bg-white/20"
                 >
                   {cat}
                 </Link>

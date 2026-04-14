@@ -20,26 +20,42 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   title: {
-    default: "AnywherePT | Australia's Marketplace for Verified Personal Trainers",
+    default: "AnywherePT | Find Verified Personal Trainers Near You",
     template: "%s | AnywherePT",
   },
   description:
     "Find and book verified personal trainers across Australia. Health is Wealth. Browse by specialisation, location, and price.",
   metadataBase: new URL("https://anywherept.com.au"),
+  icons: {
+    icon: [
+      { url: "/favicon.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
   openGraph: {
     type: "website",
     locale: "en_AU",
     url: "https://anywherept.com.au",
     siteName: "AnywherePT",
-    title: "AnywherePT | Australia's Marketplace for Verified Personal Trainers",
+    title: "AnywherePT | Find Verified Personal Trainers Near You",
     description:
       "Find and book verified personal trainers across Australia. Health is Wealth.",
+    images: [
+      {
+        url: "https://anywherept.com.au/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "AnywherePT",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AnywherePT | Australia's Marketplace for Verified Personal Trainers",
+    title: "AnywherePT | Find Verified Personal Trainers Near You",
     description:
       "Find and book verified personal trainers across Australia. Health is Wealth.",
+    images: ["https://anywherept.com.au/og-image.png"],
   },
   robots: {
     index: true,
