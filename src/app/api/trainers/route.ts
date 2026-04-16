@@ -116,6 +116,18 @@ export async function GET(request: NextRequest) {
       }
     }
 
+    // Sort
+    const sort = params.get('sort');
+    if (sort === 'price_asc') {
+      filtered.sort((a: Record<string, unknown>, b: Record<string, unknown>) => Number(a.hourly_rate) - Number(b.hourly_rate));
+    } else if (sort === 'price_desc') {
+      filtered.sort((a: Record<string, unknown>, b: Record<string, unknown>) => Number(b.hourly_rate) - Number(a.hourly_rate));
+    } else if (sort === 'experience') {
+      filtered.sort((a: Record<string, unknown>, b: Record<string, unknown>) => Number(b.experience_years) - Number(a.experience_years));
+    } else if (sort === 'rating') {
+      filtered.sort((a: Record<string, unknown>, b: Record<string, unknown>) => Number(b.avg_rating) - Number(a.avg_rating));
+    }
+
     const total = filtered.length;
     const paginated = filtered.slice(offset, offset + limit);
 

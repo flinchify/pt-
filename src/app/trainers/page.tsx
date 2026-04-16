@@ -40,6 +40,7 @@ function TrainersPageContent() {
   const [loading, setLoading] = useState(true);
   const [mapView, setMapView] = useState(false);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [sortBy, setSortBy] = useState("rating");
 
   const initialLocation = searchParams.get("suburb") || "";
   const initialSpec = searchParams.get("specialisation") || "";
@@ -50,18 +51,19 @@ function TrainersPageContent() {
     specialisations: initialSpec ? [initialSpec] : [],
   });
 
-  const fetchTrainers = useCallback(async (f: FilterValues, p: number) => {
+  const fetchTrainers = useCallback(async (f: FilterValues, p: number, sort?: string) => {
     setLoading(true);
     try {
       const params = new URLSearchParams();
       params.set("page", String(p));
       params.set("limit", "12");
       if (f.location) params.set("suburb", f.location);
-      if (f.specialisations.length === 1) params.set("specialisation", f.specialisations[0]);
+      if (f.specialisations.length > 0) params.set("specialisation", f.specialisations[0]);
       if (f.priceRange[0] > 30) params.set("min_price", String(f.priceRange[0]));
       if (f.priceRange[1] < 300) params.set("max_price", String(f.priceRange[1]));
       if (f.minRating > 0) params.set("min_rating", String(f.minRating));
       if (f.sessionType !== "all") params.set("session_type", f.sessionType);
+      if (sort && sort !== "rating") params.set("sort", sort);
 
       const res = await fetch(`/api/trainers?${params.toString()}`);
       const data: TrainersResponse = await res.json();
@@ -76,25 +78,32 @@ function TrainersPageContent() {
   }, []);
 
   useEffect(() => {
-    fetchTrainers(filters, page);
+    fetchTrainers(filters, page, sortBy);
   }, [page]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    fetchTrainers(filters, 1);
+    fetchTrainers(filters, 1, sortBy);
     setPage(1);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleApply = () => {
     setPage(1);
-    fetchTrainers(filters, 1);
+    fetchTrainers(filters, 1, sortBy);
     setMobileFiltersOpen(false);
   };
 
   const handleReset = () => {
     const resetFilters = { ...defaultFilterValues };
     setFilters(resetFilters);
+    setSortBy("rating");
     setPage(1);
-    fetchTrainers(resetFilters, 1);
+    fetchTrainers(resetFilters, 1, "rating");
+  };
+
+  const handleSort = (val: string) => {
+    setSortBy(val);
+    setPage(1);
+    fetchTrainers(filters, 1, val);
   };
 
   return (
@@ -165,6 +174,19 @@ function TrainersPageContent() {
               <p className="text-sm text-warm-500">
                 Showing {trainers.length} of {total} trainers
               </p>
+              <div className="flex items-center gap-3">
+                <label className="text-sm text-warm-500">Sort by:</label>
+                <select
+                  value={sortBy}
+                  onChange={(e) => handleSort(e.target.value)}
+                  className="rounded-lg border border-warm-200 px-3 py-1.5 text-sm text-warm-700"
+                >
+                  <option value="rating">Top Rated</option>
+                  <option value="price_asc">Price: Low to High</option>
+                  <option value="price_desc">Price: High to Low</option>
+                  <option value="experience">Most Experienced</option>
+                </select>
+              </div>
               <button
                 onClick={() => setMapView(!mapView)}
                 className="flex items-center gap-2 rounded-full border border-warm-200 px-4 py-2 text-sm font-medium text-warm-700 transition-colors hover:bg-warm-50"

@@ -28,15 +28,14 @@ const navByRole: Record<Role, NavItem[]> = {
     { label: "Settings", href: "/dashboard/settings", icon: <GearIcon /> },
   ],
   trainer: [
-    { label: "Overview", href: "/dashboard/trainer", icon: <HomeIcon /> },
-    { label: "Bookings", href: "/dashboard/trainer/bookings", icon: <CalendarIcon /> },
-    { label: "Clients", href: "/dashboard/trainer/clients", icon: <UsersIcon /> },
-    { label: "Availability", href: "/dashboard/trainer/availability", icon: <ClockIcon /> },
-    { label: "Earnings", href: "/dashboard/trainer/earnings", icon: <DollarIcon /> },
-    { label: "Reviews", href: "/dashboard/trainer/reviews", icon: <StarIcon /> },
-    { label: "Profile", href: "/dashboard/trainer/profile", icon: <UserIcon /> },
-    { label: "Messages", href: "/dashboard/trainer/messages", icon: <MessageIcon /> },
-    { label: "Settings", href: "/dashboard/trainer/settings", icon: <GearIcon /> },
+    { label: "Overview", href: "/trainer/dashboard", icon: <HomeIcon /> },
+    { label: "Calendar", href: "/trainer/dashboard/calendar", icon: <CalendarIcon /> },
+    { label: "Clients", href: "/trainer/dashboard/clients", icon: <UsersIcon /> },
+    { label: "Earnings", href: "/trainer/dashboard/earnings", icon: <DollarIcon /> },
+    { label: "Reviews", href: "/trainer/dashboard/reviews", icon: <StarIcon /> },
+    { label: "Credentials", href: "/trainer/dashboard/credentials", icon: <ShieldIcon /> },
+    { label: "Profile", href: "/trainer/dashboard/profile", icon: <UserIcon /> },
+    { label: "Settings", href: "/trainer/dashboard/settings", icon: <GearIcon /> },
   ],
   gym: [
     { label: "Overview", href: "/dashboard/gym", icon: <HomeIcon /> },
@@ -270,6 +269,14 @@ function UserIcon() {
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
       <circle cx="12" cy="7" r="4" />
+    </svg>
+  );
+}
+
+function ShieldIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
     </svg>
   );
 }

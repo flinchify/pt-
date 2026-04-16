@@ -284,5 +284,22 @@ export async function ensureTables() {
     )
   `;
 
+  await sql`
+    CREATE TABLE IF NOT EXISTS credential_documents (
+      id SERIAL PRIMARY KEY,
+      trainer_id INTEGER REFERENCES trainers(id) ON DELETE CASCADE,
+      document_type VARCHAR(50) NOT NULL,
+      document_number VARCHAR(100),
+      issuing_authority VARCHAR(255),
+      issue_date DATE,
+      expiry_date DATE,
+      file_url VARCHAR(500),
+      ai_status VARCHAR(20) DEFAULT 'pending' CHECK (ai_status IN ('pending', 'verified', 'rejected', 'expired')),
+      ai_notes TEXT,
+      verified_at TIMESTAMP,
+      created_at TIMESTAMP DEFAULT NOW()
+    )
+  `;
+
   tablesEnsured = true;
 }

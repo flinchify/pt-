@@ -20,12 +20,33 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   title: {
-    default: "AnywherePT | Find Verified Personal Trainers Near You",
+    default: "AnywherePT | Find Personal Trainers Near You",
     template: "%s | AnywherePT",
   },
   description:
-    "Find and book verified personal trainers across Australia. Health is Wealth. Browse by specialisation, location, and price.",
+    "Australia's trusted marketplace for verified personal trainers. Browse by specialisation, location, and price. Book in-person or online sessions with certified PTs across Sydney, Melbourne, Brisbane, Perth, and Adelaide.",
   metadataBase: new URL("https://anywherept.com.au"),
+  keywords: [
+    "personal trainer",
+    "personal training",
+    "fitness trainer",
+    "PT near me",
+    "book personal trainer",
+    "online personal trainer",
+    "certified personal trainer Australia",
+    "Sydney personal trainer",
+    "Melbourne personal trainer",
+    "Brisbane personal trainer",
+    "Perth personal trainer",
+    "Adelaide personal trainer",
+    "HIIT trainer",
+    "yoga instructor",
+    "strength training",
+    "weight loss trainer",
+  ],
+  authors: [{ name: "AnywherePT" }],
+  creator: "AnywherePT",
+  publisher: "AnywhereTradie Pty Ltd",
   icons: {
     icon: [
       { url: "/favicon.png", sizes: "32x32", type: "image/png" },
@@ -38,28 +59,42 @@ export const metadata: Metadata = {
     locale: "en_AU",
     url: "https://anywherept.com.au",
     siteName: "AnywherePT",
-    title: "AnywherePT | Find Verified Personal Trainers Near You",
+    title: "AnywherePT | Find Personal Trainers Near You",
     description:
-      "Find and book verified personal trainers across Australia. Health is Wealth.",
+      "Australia's trusted marketplace for verified personal trainers. Book in-person or online sessions with certified PTs near you.",
     images: [
       {
         url: "https://anywherept.com.au/og-image.png",
         width: 1200,
         height: 630,
-        alt: "AnywherePT",
+        alt: "AnywherePT - Find Personal Trainers Near You",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AnywherePT | Find Verified Personal Trainers Near You",
+    title: "AnywherePT | Find Personal Trainers Near You",
     description:
-      "Find and book verified personal trainers across Australia. Health is Wealth.",
+      "Australia's trusted marketplace for verified personal trainers. Book in-person or online sessions with certified PTs near you.",
     images: ["https://anywherept.com.au/og-image.png"],
+    creator: "@anywherept",
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: "https://anywherept.com.au",
+  },
+  verification: {
+    google: "pending",
   },
 };
 

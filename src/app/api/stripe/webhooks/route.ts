@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getDb, ensureTables } from '@/lib/db';
+import { sendBookingConfirmationToClient, sendBookingNotificationToTrainer } from '@/lib/emails';
 import Stripe from 'stripe';
 
 export async function POST(request: NextRequest) {
@@ -27,12 +28,47 @@ export async function POST(request: NextRequest) {
       case 'checkout.session.completed': {
         const session = event.data.object as Stripe.Checkout.Session;
 
-        // Update booking status to confirmed
+        // Update booking status to confirmed and send emails
         if (session.id) {
           await sql`
             UPDATE bookings SET status = 'confirmed', updated_at = NOW()
             WHERE stripe_session_id = ${session.id}
           `;
+
+          // Send confirmation emails
+          try {
+            const bookingRows = await sql`
+              SELECT b.*, u_client.name as client_name, u_client.email as client_email,
+                     u_trainer.name as trainer_name, u_trainer.email as trainer_email
+              FROM bookings b
+              JOIN clients c ON c.id = b.client_id
+              JOIN users u_client ON u_client.id = c.user_id
+              JOIN trainers t ON t.id = b.trainer_id
+              JOIN users u_trainer ON u_trainer.id = t.user_id
+              WHERE b.stripe_session_id = ${session.id}
+            `;
+            if (bookingRows.length > 0) {
+              const b = bookingRows[0];
+              const emailData = {
+                clientName: b.client_name,
+                clientEmail: b.client_email,
+                trainerName: b.trainer_name,
+                trainerEmail: b.trainer_email,
+                date: b.date,
+                startTime: b.start_time,
+                endTime: b.end_time,
+                sessionType: b.session_type || 'Personal Training',
+                locationAddress: b.location_address || 'TBD',
+                amountCents: b.amount_cents,
+              };
+              await Promise.all([
+                sendBookingConfirmationToClient(emailData),
+                sendBookingNotificationToTrainer(emailData),
+              ]);
+            }
+          } catch (emailErr) {
+            console.error('[Stripe Webhook] Email send error:', emailErr);
+          }
         }
 
         // Handle subscription checkout
